@@ -18,7 +18,7 @@ public class TestAgentMain {
         List<VirtualMachineDescriptor> descriptorList = VirtualMachine.list();
 
         for (VirtualMachineDescriptor descriptor : descriptorList) {
-            if (descriptor.displayName().contains("TestTimerConsumer")) {
+            if (descriptor.displayName().contains("ParamPrinterTestClass")) {
                 targetPid = descriptor.id();
                 VirtualMachine vm = VirtualMachine.attach(targetPid);
 

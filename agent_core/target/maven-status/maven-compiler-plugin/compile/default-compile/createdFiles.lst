@@ -4,6 +4,9 @@ com\hepeng\timerconsumer\Cost.class
 com\hepeng\timerconsumer\TimerConsumerTransform.class
 com\hepeng\asm\ASMSample.class
 com\hepeng\timerconsumer\CostClassVisitor.class
+com\hepeng\paramprinter\ParamPrinterAgent.class
+com\hepeng\paramprinter\ParamPrinterClassVisitor.class
+com\hepeng\paramprinter\ParamPrinterTransformer.class
 com\hepeng\HotSwapURLClassLoader.class
 com\hepeng\MyTransformer.class
 com\hepeng\timerconsumer\Bazhang.class
@@ -15,6 +18,7 @@ com\hepeng\asm\ASMTransformer.class
 com\hepeng\timerconsumer\TimerConsumerAgent.class
 com\hepeng\asm\ASMSample$1.class
 com\hepeng\timerconsumer\TimeCache.class
+com\hepeng\paramprinter\ParamPrinterMethodAdaptor.class
 com\hepeng\asm\ByteCodeDemo.class
 com\hepeng\MyAgentMain$1.class
 com\hepeng\timerconsumer\CostClassVisitor$1.class
