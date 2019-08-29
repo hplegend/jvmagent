@@ -1,4 +1,5 @@
 com\hepeng\TestAgentMain.class
 com\hepeng\TestPreMain.class
+com\hepeng\TestParamPrintAgentMain.class
 com\hepeng\TestMain.class
 com\hepeng\TestTimerConsumer.class

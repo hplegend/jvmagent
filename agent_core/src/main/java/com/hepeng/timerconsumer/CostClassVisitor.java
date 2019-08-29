@@ -40,6 +40,8 @@ public class CostClassVisitor extends ClassVisitor {
             @Override
             protected void onMethodEnter() {
                 if (inject) {
+
+                    // 定义一个局部变量
                     mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
                     mv.visitLdcInsn("========start=========");
                     mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println",

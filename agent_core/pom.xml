@@ -105,7 +105,7 @@
                         <archive>
                             <manifestEntries>
                               <!--  <Premain-Class>com.hepeng.MyAgentMain</Premain-Class>-->
-                                <Agent-Class>com.hepeng.timerconsumer.TimerConsumerAgent</Agent-Class>
+                                <Agent-Class>com.hepeng.trace.param.track.ParamTrackAgentMain</Agent-Class>
                                 <Can-Retransform-Classes>true</Can-Retransform-Classes>
                                 <Can-Redefine-Classes>true</Can-Redefine-Classes>
                             </manifestEntries>

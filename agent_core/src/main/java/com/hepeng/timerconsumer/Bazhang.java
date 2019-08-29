@@ -28,6 +28,7 @@ public class Bazhang {
             if (i > 50) {
                 return;
             }
+
         }
     }
 }
