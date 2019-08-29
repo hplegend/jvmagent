@@ -22,11 +22,10 @@ public class TestAgentMain {
                 targetPid = descriptor.id();
                 VirtualMachine vm = VirtualMachine.attach(targetPid);
 
-                vm.loadAgent("D:/githubProject/jvmagent/agent_core/target/agent_core.jar",
+                vm.loadAgent("D:/hplegend/codes/myAgent/jvmagent/agent_core/target/agent_core.jar",
                         "toagent");
             }
         }
-
     }
 
 }
