@@ -18,6 +18,7 @@ com\hepeng\trace\param\track\ParamTraceClassAdaptor.class
 com\hepeng\timerconsumer\Cost.class
 com\hepeng\timerconsumer\TimerConsumerTransform.class
 com\hepeng\trace\param\track\ParamTraceMethodAdaptor.class
+com\hepeng\HotSwapURLClassLoader.class
 com\hepeng\timerconsumer\Bazhang.class
 com\hepeng\visitor\Element.class
 com\hepeng\visitor\This.class
@@ -25,6 +26,7 @@ com\hepeng\asm\ASMAgentMain.class
 com\hepeng\asm\MethodAdapter.class
 com\hepeng\visitor\VisitorDemo.class
 com\hepeng\asm\ASMTransformer.class
+com\hepeng\timerconsumer\TimerConsumerAgent.class
 com\hepeng\trace\param\track\ParamTrackAgentMain.class
 com\hepeng\timerconsumer\TimeCache.class
 com\hepeng\asm\ByteCodeDemo.class

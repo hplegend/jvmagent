@@ -23,10 +23,14 @@ public class Bazhang {
         System.out.println(str);
         for (int i = 0; i < 100; i++) {
             if (i % 8 == 0) {
-                System.out.println(i);
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             if (i > 50) {
-                return;
+               break ;
             }
 
         }

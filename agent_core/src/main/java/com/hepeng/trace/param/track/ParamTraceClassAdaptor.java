@@ -1,15 +1,11 @@
 package com.hepeng.trace.param.track;
 
 
-import com.hepeng.timerconsumer.Cost;
-import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
 import org.objectweb.asm.commons.AdviceAdapter;
 
-import static org.objectweb.asm.Opcodes.ASM6;
+import static org.objectweb.asm.Opcodes.ASM5;
 
 /**
  * @author hp.he
@@ -18,7 +14,7 @@ import static org.objectweb.asm.Opcodes.ASM6;
 public class ParamTraceClassAdaptor extends ClassVisitor {
 
     public ParamTraceClassAdaptor(ClassVisitor classVisitor) {
-        super(ASM6, classVisitor);
+        super(ASM5, classVisitor);
     }
 
     /**
@@ -29,7 +25,13 @@ public class ParamTraceClassAdaptor extends ClassVisitor {
                                      final String desc, final String signature, final String[] exceptions) {
 
         MethodVisitor mv = cv.visitMethod(access, name, desc, signature, exceptions);
-        mv = new AdviceAdapter(Opcodes.ASM6, mv, access, name, desc) {
+        mv = new AdviceAdapter(ASM5, mv, access, name, desc) {
+
+            @Override
+            public void visitMaxs(final int maxStack, final int maxLocals) {
+                super.visitMaxs(maxStack + 1, maxLocals + 1);
+            }
+
 
             @Override
             protected void onMethodEnter() {
@@ -40,15 +42,10 @@ public class ParamTraceClassAdaptor extends ClassVisitor {
                 mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println",
                         "(Ljava/lang/String;)V", false);
 
-                // 定义一个局部变量
-                mv.visitIntInsn(BIPUSH, 12);
-                mv.visitVarInsn(ISTORE, 2);
-
-                // visitFieldInsn 访问成员变量
-                mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
-                mv.visitVarInsn(ILOAD, 2);
-                mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println",
-                        "(I)V", false);
+                // 存储一个开始时间变量
+                mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "nanoTime",
+                        "()J", false);
+                mv.visitVarInsn(LSTORE, 2);
 
                 // visitFieldInsn 访问成员变量
                 mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
@@ -58,12 +55,29 @@ public class ParamTraceClassAdaptor extends ClassVisitor {
                         "()J", false);
                 mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println",
                         "(J)V", false);
+                mv.visitMaxs(6, 6);
             }
 
             @Override
             protected void onMethodExit(int opcode) {
 
+
+                mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+                mv.visitLdcInsn("method end~~~~");
+                mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println",
+                        "(Ljava/lang/String;)V", false);
+
+                // 去字符串常量
+                mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+                mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "nanoTime",
+                        "()J", false);
+                mv.visitVarInsn(LLOAD, 2);
+                mv.visitInsn(LSUB);
+                mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println",
+                        "(J)V", false);
             }
+
+
         };
         return mv;
     }
